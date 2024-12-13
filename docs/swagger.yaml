@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: 
+  version: 1.0.0
+servers
+  description: API for analyzing cosmetic products and their ingredients.:
+  - url: "http://localhost:8080"
+  - url:
+  description:
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    RegisterRequest:
+      type: object
+      properties:
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+    AuthResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          enum: [Bearer]
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      description: Registers a new user with a fullname, email, and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: User successfully registered.
+        "400":
+          description: Invalid input or user already exists.
+  /auth/login:
+    post:
+      summary: Log in
+      description: Authenticates a user and returns a JWT token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Authentication successful.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid username or password.
+  /protected/resource:
+    get:
+      summary: Protected Resource
+      description: Example of a protected resource requiring authentication.
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Access granted to protected resource.
+        "401":
+          description: Unauthorized access.
