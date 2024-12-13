@@ -142,6 +142,10 @@ func (c *Container) InitHandlers() {
 			c.Config,
 			c.Logger,
 		),
+		AuthHandler: handlers.NewAuthHandler(
+			c.Logger,
+			c.Services.AuthService,
+		),
 	}
 	c.Handlers = handlers
 }
