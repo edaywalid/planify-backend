@@ -44,7 +44,7 @@ func (h *AuthHandler) Register(c *gin.Context) {
 	}
 
 	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", true, true)
+	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "User registered successfully",
 	})
@@ -68,7 +68,7 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", true, true)
+	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
 	c.JSON(http.StatusCreated, gin.H{"message": "User logged in successfully"})
 }
 
