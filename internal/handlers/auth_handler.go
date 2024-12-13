@@ -66,7 +66,8 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.SetCookie("accessToken", token.AccessToken, 3600, "/", "devfest-batna24-backend.onrender.com", true, true)
+	c.SetSameSite(http.SameSiteNoneMode)
+	c.SetCookie("acessToken", token.AccessToken, 3600, "/", "devfest-batna24-backend.onrender.com", true, true)
 	c.JSON(http.StatusCreated, gin.H{"message": "User logged in successfully"})
 }
 
