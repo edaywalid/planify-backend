@@ -27,13 +27,13 @@ func NewAuthService(
 	}
 }
 
-func (s *AuthService) Register(fullname, email, password string) error {
+func (s *AuthService) Register(fullname, email, password string) (*Token, error) {
 	if !utils.ValidatePassword(password) {
-		return errors.New("password not secure")
+		return nil, errors.New("password not secure")
 	}
 	hashedPassword, err := utils.HashPassword(password)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	user := &models.User{
@@ -42,16 +42,21 @@ func (s *AuthService) Register(fullname, email, password string) error {
 		Password: string(hashedPassword),
 	}
 
-	err = s.userRepo.Create(user)
+	inserted_user, err := s.userRepo.Create(user)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	token, err := s.jwtService.GenerateToken(inserted_user.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	return token, err
 }
 
-func (s *AuthService) Login(username, password string) (*Token, error) {
-	user, err := s.userRepo.FindByUsername(username)
+func (s *AuthService) Login(email, password string) (*Token, error) {
+	user, err := s.userRepo.FindByEmail(email)
 	if err != nil {
 		return nil, err
 	}

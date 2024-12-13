@@ -36,13 +36,14 @@ func (h *AuthHandler) Register(c *gin.Context) {
 		return
 	}
 
-	err := h.authService.Register(input.FullName, input.Email, input.Password)
+	token, err := h.authService.Register(input.FullName, input.Email, input.Password)
 	if err != nil {
 		h.logger.LogError().Msgf("failed registering user : %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to register user"})
 		return
 	}
 
+	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "User registered successfully",
 	})
@@ -59,14 +60,14 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	tokenPair, err := h.authService.Login(input.Email, input.Password)
+	token, err := h.authService.Login(input.Email, input.Password)
 	if err != nil {
 		h.logger.LogError().Msgf("failed login user : %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.SetCookie("accessToken", tokenPair.AccessToken, 60*60*24*30, "/", "localhost", false, true)
+	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
 	c.String(http.StatusOK, "Logged in successfully")
 }
 
