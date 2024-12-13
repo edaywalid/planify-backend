@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/edaywalid/devfest-batna24-backend/internal/services"
 	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
@@ -67,12 +68,34 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
+	http.SetCookie(c.Writer, &http.Cookie{
+		Name:     "accessToken",
+		Value:    token.AccessToken,
+		Path:     "/",
+		Domain:   "devfest-batna24-backend.onrender.com",
+		Expires:  time.Now().Add(30 * 24 * time.Hour),
+		Secure:   true,
+		HttpOnly: true,
+		SameSite: http.SameSiteNoneMode,
+	})
 	c.JSON(http.StatusCreated, gin.H{"message": "User logged in successfully"})
 }
 
 func (h *AuthHandler) Logout(c *gin.Context) {
-	c.SetCookie("accessToken", "", -1, "/", "localhost", false, true)
-	c.JSON(http.StatusCreated, gin.H{"message": "User logged out successfully"})
+	domain := "devfest-batna24-backend.onrender.com"
+	http.SetCookie(c.Writer, &http.Cookie{
+		Name:     "accessToken",
+		Value:    "",
+		Path:     "/",
+		Domain:   domain,
+		Expires:  time.Unix(0, 0),
+		Secure:   true,
+		HttpOnly: true,
+		SameSite: http.SameSiteNoneMode,
+	})
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "User logged out successfully",
+	})
 }
