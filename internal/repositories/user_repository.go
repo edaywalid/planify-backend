@@ -13,8 +13,10 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 	return &UserRepository{db}
 }
 
-func (r *UserRepository) Create(user *models.User) error {
-	return r.db.Create(user).Error
+func (r *UserRepository) Create(user *models.User) (*models.User, error) {
+	var inserted_user models.User
+	err := r.db.Create(user).First(&inserted_user).Error
+	return &inserted_user, err
 }
 
 func (r *UserRepository) FindByUsername(username string) (*models.User, error) {
