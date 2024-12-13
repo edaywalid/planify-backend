@@ -1,6 +1,6 @@
 module github.com/edaywalid/devfest-batna24-backend
 
-go 1.23.4
+go 1.23.3
 
 require (
 	github.com/gin-gonic/gin v1.10.0
