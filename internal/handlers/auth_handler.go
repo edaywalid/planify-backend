@@ -74,4 +74,5 @@ func (h *AuthHandler) Login(c *gin.Context) {
 
 func (h *AuthHandler) Logout(c *gin.Context) {
 	c.SetCookie("accessToken", "", -1, "/", "localhost", false, true)
+	c.JSON(http.StatusCreated, gin.H{"message": "User logged out successfully"})
 }
