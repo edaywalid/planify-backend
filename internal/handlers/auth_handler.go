@@ -68,7 +68,7 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	}
 
 	c.SetCookie("accessToken", token.AccessToken, 60*60*24*30, "/", "localhost", false, true)
-	c.String(http.StatusOK, "Logged in successfully")
+	c.JSON(http.StatusCreated, gin.H{"message": "User logged in successfully"})
 }
 
 func (h *AuthHandler) Logout(c *gin.Context) {
