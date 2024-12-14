@@ -14,6 +14,7 @@ func SetupRouter(container *di.Container) *gin.Engine {
 		AllowHeaders:     []string{"Content-Type"},
 		AllowCredentials: true,
 	}))
+
 	NewPingRouter(container).SetupRouter(router)
 	NewAuthRouter(container).SetupRouter(router)
 	NewSwaggerRouter(container).SetupRouter(router)
