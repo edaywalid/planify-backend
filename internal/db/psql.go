@@ -13,7 +13,7 @@ func InitPSQL(config *config.Config) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&models.User{})
+	err = db.AutoMigrate(&models.User{}, &models.Business{}, &models.MarketingPlan{}, &models.Phase{}, &models.Step{}, &models.User{})
 	if err != nil {
 		return nil, err
 	}
