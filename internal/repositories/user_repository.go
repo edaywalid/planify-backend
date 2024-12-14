@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"github.com/edaywalid/devfest-batna24-backend/internal/models"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -29,6 +30,17 @@ func (r *UserRepository) FindByEmail(email string) (*models.User, error) {
 	var user models.User
 	err := r.db.Where("email = ?", email).First(&user).Error
 	return &user, err
+}
+
+func (ur *UserRepository) FindById(id uuid.UUID) (*models.User, error) {
+	var user models.User
+	err := ur.db.Where("id = ?", id).First(&user).Error
+	return &user, err
+}
+
+func (ur *UserRepository) Delete(id uuid.UUID) error {
+	err := ur.db.Where("id = ?", id).Delete(&models.User{}).Error
+	return err
 }
 
 func (r *UserRepository) Update(user *models.User) error {
