@@ -10,7 +10,6 @@ import (
 type Config struct {
 	ENV                 string
 	PORT                string
-	MONGO_URI           string
 	DB_NAME             string
 	PROD_URL            string
 	DOCS_URL            string
@@ -43,7 +42,6 @@ func LoadConfig() (*Config, error) {
 	config.ENV = getEnv("ENV", "development")
 	config.PORT = getEnv("PORT", "8080")
 	config.DB_NAME = getEnv("DB_NAME", "planify")
-	config.MONGO_URI = getEnv("MONGO_URI", "mongodb://root:password@localhost:27017")
 	config.PROD_URL = getEnv("PROD_URL", "")
 	config.DOCS_URL = getEnv("DOCS_URL", "")
 	config.CORS_ALLOWED_ORIGIN = getEnv("CORS_ALLOWED_ORIGIN", "")
