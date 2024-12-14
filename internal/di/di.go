@@ -1,9 +1,6 @@
 package di
 
 import (
-	"context"
-	"time"
-
 	"github.com/edaywalid/devfest-batna24-backend/internal/config"
 	"github.com/edaywalid/devfest-batna24-backend/internal/db"
 	"github.com/edaywalid/devfest-batna24-backend/internal/handlers"
@@ -11,7 +8,6 @@ import (
 	"github.com/edaywalid/devfest-batna24-backend/internal/repositories"
 	"github.com/edaywalid/devfest-batna24-backend/internal/services"
 	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
-	"go.mongodb.org/mongo-driver/mongo"
 	"gorm.io/gorm"
 )
 
@@ -33,16 +29,18 @@ type (
 	}
 
 	Repositories struct {
-		UserRepository *repositories.UserRepository
+		UserRepository     *repositories.UserRepository
+		BusinessRepository *repositories.BusinessRepository
 	}
 	Handlers struct {
-		PingHandler    *handlers.PingHandler
-		SwaggerHandler *handlers.SwaggerHandler
-		AuthHandler    *handlers.AuthHandler
+		PingHandler     *handlers.PingHandler
+		SwaggerHandler  *handlers.SwaggerHandler
+		AuthHandler     *handlers.AuthHandler
+		BusinessHandler *handlers.BusinessHandler
+		UserHandler     *handlers.UserHandler
 	}
 	Databases struct {
 		postgres *gorm.DB
-		mongo    *mongo.Client
 	}
 	Cache struct {
 		// redis *cache.Redis
@@ -95,14 +93,8 @@ func (c *Container) initDatabases() error {
 		return err
 	}
 
-	mongo, err := db.InitMongo(c.Config)
-	if err != nil {
-		return err
-	}
-
 	c.Databases = &Databases{
 		postgres: postgres,
-		mongo:    mongo,
 	}
 	return nil
 }
@@ -159,11 +151,5 @@ func (c *Container) InitMiddlewares() {
 
 func (c *Container) Close() error {
 	c.Logger.LogInfo().Msg("Closing databases")
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	if c.Databases.mongo != nil {
-		c.Databases.mongo.Disconnect(ctx)
-	}
-
 	return nil
 }
