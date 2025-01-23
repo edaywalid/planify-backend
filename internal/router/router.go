@@ -7,13 +7,7 @@ import (
 
 func SetupRouter(container *di.Container) *gin.Engine {
 	router := gin.Default()
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000", "https://devfest-batna24-frontend.vercel.app"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders:     []string{"Content-Type"},
-		AllowCredentials: true,
-	}))
-
+	router.Use(container.Middlewares.CorsMiddleWare.CORSMiddleware())
 	NewPingRouter(container).SetupRouter(router)
 	NewAuthRouter(container).SetupRouter(router)
 	NewSwaggerRouter(container).SetupRouter(router)
