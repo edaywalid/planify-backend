@@ -43,7 +43,7 @@ func (h *AuthHandler) Register(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("accessToken", token.AccessToken, 3600, "/", "devfest-batna24-backend.onrender.com", true, true)
+	c.SetCookie("accessToken", token.AccessToken, 3600, "/", "", true, true)
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "User registered successfully",
 	})
@@ -67,11 +67,11 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("acessToken", token.AccessToken, 3600, "/", "devfest-batna24-backend.onrender.com", true, true)
+	c.SetCookie("acessToken", token.AccessToken, 3600, "/", "", true, true)
 	c.JSON(http.StatusCreated, gin.H{"message": "User logged in successfully"})
 }
 
 func (h *AuthHandler) Logout(c *gin.Context) {
-	c.SetCookie("accessToken", "", -1, "/", "devfest-batna24-backend.onrender.com", true, true)
+	c.SetCookie("accessToken", "", -1, "/", "", true, true)
 	c.JSON(http.StatusCreated, gin.H{"message": "User logged out successfully"})
 }
