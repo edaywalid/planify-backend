@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/services"
+	"github.com/edaywalid/planify-backend/internal/services"
 	"github.com/gin-gonic/gin"
 )
 

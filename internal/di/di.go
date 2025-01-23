@@ -1,13 +1,13 @@
 package di
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/config"
-	"github.com/edaywalid/devfest-batna24-backend/internal/db"
-	"github.com/edaywalid/devfest-batna24-backend/internal/handlers"
-	"github.com/edaywalid/devfest-batna24-backend/internal/middlewares"
-	"github.com/edaywalid/devfest-batna24-backend/internal/repositories"
-	"github.com/edaywalid/devfest-batna24-backend/internal/services"
-	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
+	"github.com/edaywalid/planify-backend/internal/config"
+	"github.com/edaywalid/planify-backend/internal/db"
+	"github.com/edaywalid/planify-backend/internal/handlers"
+	"github.com/edaywalid/planify-backend/internal/middlewares"
+	"github.com/edaywalid/planify-backend/internal/repositories"
+	"github.com/edaywalid/planify-backend/internal/services"
+	logger "github.com/edaywalid/planify-backend/pkg/utils"
 	"gorm.io/gorm"
 )
 

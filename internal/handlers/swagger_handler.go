@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/edaywalid/devfest-batna24-backend/internal/config"
-	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
+	"github.com/edaywalid/planify-backend/internal/config"
+	logger "github.com/edaywalid/planify-backend/pkg/utils"
 	"github.com/gin-gonic/gin"
 	httpSwagger "github.com/swaggo/http-swagger"
 )

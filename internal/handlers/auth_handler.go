@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/edaywalid/devfest-batna24-backend/internal/services"
-	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
+	"github.com/edaywalid/planify-backend/internal/services"
+	logger "github.com/edaywalid/planify-backend/pkg/utils"
 	"github.com/gin-gonic/gin"
 )
 

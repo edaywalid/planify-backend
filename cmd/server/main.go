@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/di"
-	"github.com/edaywalid/devfest-batna24-backend/internal/router"
-	logger "github.com/edaywalid/devfest-batna24-backend/pkg/utils"
+	"github.com/edaywalid/planify-backend/internal/di"
+	"github.com/edaywalid/planify-backend/internal/router"
+	logger "github.com/edaywalid/planify-backend/pkg/utils"
 )
 
 func main() {

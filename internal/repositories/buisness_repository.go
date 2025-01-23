@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/models"
+	"github.com/edaywalid/planify-backend/internal/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

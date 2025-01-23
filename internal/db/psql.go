@@ -1,8 +1,8 @@
 package db
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/config"
-	"github.com/edaywalid/devfest-batna24-backend/internal/models"
+	"github.com/edaywalid/planify-backend/internal/config"
+	"github.com/edaywalid/planify-backend/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

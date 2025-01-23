@@ -3,9 +3,9 @@ package services
 import (
 	"errors"
 
-	"github.com/edaywalid/devfest-batna24-backend/internal/models"
-	"github.com/edaywalid/devfest-batna24-backend/internal/repositories"
-	"github.com/edaywalid/devfest-batna24-backend/pkg/utils"
+	"github.com/edaywalid/planify-backend/internal/models"
+	"github.com/edaywalid/planify-backend/internal/repositories"
+	"github.com/edaywalid/planify-backend/pkg/utils"
 )
 
 type Token struct {

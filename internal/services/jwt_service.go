@@ -3,7 +3,7 @@ package services
 import (
 	"time"
 
-	"github.com/edaywalid/devfest-batna24-backend/internal/config"
+	"github.com/edaywalid/planify-backend/internal/config"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 )

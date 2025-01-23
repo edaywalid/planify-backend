@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/edaywalid/devfest-batna24-backend/internal/di"
+	"github.com/edaywalid/planify-backend/internal/di"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

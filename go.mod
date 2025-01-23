@@ -1,4 +1,4 @@
-module github.com/edaywalid/devfest-batna24-backend
+module github.com/edaywalid/planify-backend
 
 go 1.23.3
 

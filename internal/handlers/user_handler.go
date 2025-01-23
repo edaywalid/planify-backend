@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/edaywalid/devfest-batna24-backend/internal/services"
+	"github.com/edaywalid/planify-backend/internal/services"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
