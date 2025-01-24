@@ -10,17 +10,17 @@ To run the backend service, you don’t need to build or manage it manually. Fol
 services:
   backend:
     container_name: planify-backend
-    image : imewalid/planify-back:latest
+    image: imewalid/planify-back:latest
     restart: unless-stopped
     depends_on:
       psql_database:
         condition: service_healthy
     ports:
-      - "8082:8080"
+      - "${HOST_PORT}:8080"
     networks:
       - app-network
     env_file:
-      - .env.production
+      - .env
 
   psql_database:
     container_name: psql_database
@@ -30,7 +30,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
     ports:
-      - "5433:5432"
+      - "${HOST_PSQL_PORT}:5432"
     volumes:
       - psqldb:/var/lib/postgresql/data
     networks:
@@ -46,8 +46,7 @@ volumes:
 
 networks:
   app-network:
-    driver: bridge
-```
+ ```
    ```
 3. Run the backend container:
    ```bash
