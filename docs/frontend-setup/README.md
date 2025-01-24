@@ -47,12 +47,13 @@ volumes:
 networks:
   app-network:
  ```
+3. Create `.env` file following `./.env.example`
 
-3. Run the backend container:
+4. Run the backend container:
    ```bash
    docker-compose up -d 
    ```
-4. Access the backend at `http://localhost:${HOST_PORT}` (or update the API URL in the frontend accordingly).
+5. Access the backend at `http://localhost:${PORT}` (or update the API URL in the frontend accordingly).
 
 That’s it! Let us know if you encounter any issues.
 
