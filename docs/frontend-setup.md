@@ -50,9 +50,9 @@ networks:
    ```
 3. Run the backend container:
    ```bash
-   docker run -d -p 8080:8080 myusername/my-backend:v1
+   docker-compose up -d 
    ```
-4. Access the backend at `http://localhost:8080` (or update the API URL in the frontend accordingly).
+4. Access the backend at `http://localhost:${HOST_PORT}` (or update the API URL in the frontend accordingly).
 
 ## Using Docker Compose (If Additional Services Are Needed)
 
