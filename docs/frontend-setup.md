@@ -47,25 +47,12 @@ volumes:
 networks:
   app-network:
  ```
-   ```
+
 3. Run the backend container:
    ```bash
    docker-compose up -d 
    ```
 4. Access the backend at `http://localhost:${HOST_PORT}` (or update the API URL in the frontend accordingly).
-
-## Using Docker Compose (If Additional Services Are Needed)
-
-If the backend requires dependencies like a database, you can use `docker-compose`:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/backend-service.git
-   cd backend-service
-   ```
-2. Run:
-   ```bash
-   docker-compose up
-   ```
 
 That’s it! Let us know if you encounter any issues.
 
