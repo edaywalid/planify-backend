@@ -16,7 +16,7 @@ services:
       psql_database:
         condition: service_healthy
     ports:
-      - "${HOST_PORT}:8080"
+      - "${PORT}:8080"
     networks:
       - app-network
     env_file:
