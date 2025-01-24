@@ -45,8 +45,9 @@ volumes:
   psqldb:
 
 networks:
-  app-network:
- ```
+  planify-back-network:
+    driver: bridge
+```
 3. Create `.env` file following `./.env.example`
 
 4. Run the backend container:
